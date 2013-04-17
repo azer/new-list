@@ -6,6 +6,12 @@
   "scripts": {
     "test": "fox"
   },
+  "keywords": [
+    "array",
+    "list",
+    "watch",
+    "pubsub"
+  ],
   "dependencies": {
     "new-pubsub": "*"
   },
