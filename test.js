@@ -177,3 +177,22 @@ it('batches more complicated updates', function(done){
   });
 
 });
+
+it('is the example in README', function(done){
+
+  var todo = List('Buy milk', 'Take shower', 'Brush Teeths', 'Have coffee');
+
+  todo.pop();
+  todo.push('Cook Dinner');
+  todo.splice(0, 1, 'Buy Milk And Bread');
+
+  todo.subscribe(function(update){ // or todo.subscribe.once
+
+    expect(update.add).to.deep.equal({ 0: 'Buy Milk And Bread', 3: 'Cook Dinner' });
+    expect(update.remove).to.deep.equal([3, 0]);
+
+    done();
+
+  });
+
+});

@@ -122,8 +122,6 @@ function rm(list, index, updateIndex){
       list.updates.add[ i - 1 ] = list.updates.add[i];
       delete list.updates.add[i];
     }
-
-    return;
   }
 
   list.updates.remove.push(arguments.length > 2 ? updateIndex : index);
@@ -159,7 +157,7 @@ function splice(list, params){
       end   = start + params[1],
       i     = start - 1;
 
-  while( ++i < end && i > -1 ) {
+  while( ++i < end && i > -2 ) {
     rm(list, start, i);
   }
 
