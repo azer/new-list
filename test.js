@@ -51,13 +51,13 @@ it('reverses', function(done){
 
   var l = List(3, 1, 4);
 
-  l.reverse();
-
   l.subscribe(function(update){
     expect(update.reverse).to.be.true;
     expect(l.slice()).to.deep.equal([4, 1, 3]);
     done();
   });
+
+  l.reverse();
 
 });
 
@@ -78,16 +78,16 @@ it('sorts', function(done){
 
   var l = List(3, 1, 4);
 
+  l.subscribe(function(update){
+    expect(update.sort).to.be.true;
+    done();
+  });
+
   l.sort(function(a, b){
     return a > b ? 1 : ( b < a ? -1 : 0 );
   });
 
   expect(l.slice()).to.deep.equal([1, 3, 4]);
-
-  l.subscribe(function(update){
-    expect(update.sort).to.be.true;
-    done();
-  });
 
 });
 

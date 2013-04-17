@@ -101,10 +101,7 @@ function push(list, elements){
 
 function reverse(list){
   var ret = proto.reverse.call(list);
-
-  list.updates.reverse = true;
-  publish(list);
-
+  list.publish({ reverse: true });
   return ret;
 }
 
@@ -139,11 +136,7 @@ function shift(list){
 
 function sort(list, compare){
   var ret = proto.sort.call(list, compare);
-
-  list.updates.sort = true;
-
-  publish(list);
-
+  list.publish({ sort: true });
   return ret;
 }
 
