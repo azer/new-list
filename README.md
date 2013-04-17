@@ -31,7 +31,7 @@ $ npm install new-list
 ## Usage
 
 ```js
-list = require('new-list')
+List = require('new-list')
 
 fruits = List('cherry', 'melon', 'orange', 'kiwi')
 // => ['cherry', 'melon', 'orange', 'kiwi']
@@ -43,6 +43,10 @@ fruits.subscribe(function(update){
 
     update.remove
     // => [3]
+    
+    update.sort
+    // => undefined
+    // This returns true if reverse() or sort() methods are called.
 
 })
 
