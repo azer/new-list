@@ -2,11 +2,14 @@ var pubsub = require("new-pubsub"),
     proto  = Array.prototype;
 
 module.exports = List;
+module.exports.mix = mix;
 
 function List(){
-  var list;
+  return mix(proto.slice.call(arguments));
+}
 
-  list         = pubsub(proto.slice.call(arguments));
+function mix(list){
+  list         = pubsub(list);
   list.updates = { add: undefined, remove: undefined };
 
   list.pop = function(){
