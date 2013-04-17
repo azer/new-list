@@ -1,0 +1,21 @@
+{
+  "name": "new-list",
+  "version": "0.0.0",
+  "description": "Minimalistic Arrays with PubSub",
+  "main": "index.js",
+  "scripts": {
+    "test": "fox"
+  },
+  "dependencies": {
+    "new-pubsub": "*"
+  },
+  "devDependencies": {
+    "fox": "*"
+  },
+  "repository": {
+    "url": "git@github.com:azer\/new-list.git",
+    "type": "git"
+  },
+  "author": "Azer Ko\u00e7ulu <azer@kodfabrik.com>",
+  "license": "BSD"
+}
