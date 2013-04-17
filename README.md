@@ -1,6 +1,6 @@
 ## new-list
 
-Creates native JavaScript arrays with [PubSub](http://github.com/azer/new-pubsub) interfaces that lets you subscribe to
+Creates native JavaScript arrays with [PubSub](http://github.com/azer/new-pubsub) interfaces that you can subscribe to
 changes.
 
 ```js
