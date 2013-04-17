@@ -1,8 +1,26 @@
 ## new-list
 
-Same as native Array except it has a minimalistic
+Same as the native Array except lists have a minimalistic
 [pub/sub](http ://github.com/azer/new-pubsub) interface
-that lets you subscribe to all changes on an array.
+that lets you subscribe to all changes on arrays.
+
+```js
+todo = List('Buy milk', 'Take shower')
+
+todo.pop()
+todo.push('Cook Dinner')
+todo.splice(0, 1, 'Buy Milk And Bread')
+
+todo.subscribe(function(update){ // or todo.subscribe.once
+
+  update.add
+  // => { 0: 'Buy Milk And Bread', 1: 'Cook Dinner' }
+  
+  update.remove
+  // => [0, 1]
+
+})
+```
 
 ## Install
 
