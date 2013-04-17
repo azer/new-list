@@ -1,8 +1,8 @@
 ## new-list
 
-Same as the native Array except lists have a minimalistic
+Same as the native Array except that it has a
 [pub/sub](http://github.com/azer/new-pubsub) interface
-that lets you subscribe to all changes on arrays.
+that lets you subscribe to all changes.
 
 ```js
 todo = List('Buy milk', 'Take shower')
