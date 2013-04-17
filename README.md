@@ -29,7 +29,7 @@ fruits.subscribe(function(update){
 })
 
 fruits.pop()
-fruits.push('strawberry'')
+fruits.push('strawberry')
 
 fruits
 // => ['cherry', 'melon', 'orange', 'strawberry']
