@@ -4,6 +4,7 @@ Creates native JavaScript arrays with [PubSub](http://github.com/azer/new-pubsub
 changes.
 
 ```js
+List = require('new-list')
 todo = List('Buy milk', 'Take shower')
 
 todo.pop()
