@@ -1,7 +1,7 @@
 ## new-list
 
 Same as the native Array except lists have a minimalistic
-[pub/sub](http ://github.com/azer/new-pubsub) interface
+[pub/sub](http://github.com/azer/new-pubsub) interface
 that lets you subscribe to all changes on arrays.
 
 ```js
