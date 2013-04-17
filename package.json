@@ -1,6 +1,6 @@
 {
-  "name": "ak47",
-  "version": "0.0.3",
+  "name": "new-list",
+  "version": "0.0.4",
   "description": "Minimalistic Arrays with PubSub",
   "main": "index.js",
   "scripts": {
