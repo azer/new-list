@@ -1,6 +1,6 @@
 {
   "name": "new-list",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Minimalistic Arrays with PubSub",
   "main": "index.js",
   "scripts": {
