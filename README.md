@@ -15,6 +15,8 @@ todo(0)
 // => 'Buy Milk and Break'
 todo(1)
 // => 'Take shower'
+todo.len()
+// => 2
 
 todo.subscribe(function(update){ // or todo.subscribe.once
 
@@ -79,7 +81,7 @@ while( i --> 0 ) {
 
 ## API Reference
 
-* **len()** Returns the length of the array. **Warning:* It's a method, not a property.
+* **len()** Returns the length of the array. **Warning:** It's a method, not a property.
 
 ### Mutator Methods
 
