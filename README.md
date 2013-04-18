@@ -81,7 +81,7 @@ while( i --> 0 ) {
 
 ## API Reference
 
-* **len()** Returns the length of the array. **Warning:** It's a method, not a property.
+* **len()** Returns the length of the array. **Warning:* Never use *length* property.
 
 ### Mutator Methods
 
