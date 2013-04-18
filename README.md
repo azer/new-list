@@ -28,7 +28,7 @@ todo.subscribe(function(update){ // or todo.subscribe.once
 $ npm install new-list
 ```
 
-## Usage
+## Usage Example
 
 ```js
 List = require('new-list')
@@ -57,6 +57,30 @@ fruits
 // => ['cherry', 'melon', 'orange', 'strawberry']
 
 fruits.splice(0, 0, 'apple', 'banana')
+```
+
+## Firing Custom Updates
+
+```js
+people = List({ name: 'Joe', age: 27 }, { name: 'Smith', age: 19 })
+
+people.subscribe(function(update){
+  
+  if (update.person) {
+    
+    update.index
+    // => 1
+    
+    update.person
+    // => { name: 'Smith', age: 20 }
+    
+  }
+  
+})
+
+people[1].age = 20
+people.publish({ person: people[1], index: 1 })
+
 ```
 
 ![](https://dl.dropboxusercontent.com/s/gquje0z7y7oro4f/npmel_10.jpg)
