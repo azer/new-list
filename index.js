@@ -2,54 +2,76 @@ var pubsub = require("new-pubsub"),
     proto  = Array.prototype;
 
 module.exports = List;
-module.exports.mix = mix;
 
 function List(){
-  return mix(proto.slice.call(arguments));
-}
+  var array = proto.slice.call(arguments);
 
-function mix(list){
-  list         = pubsub(list);
-  list.updates = { add: undefined, remove: undefined };
+  self.array = array;
+  self.updates = { add: undefined, remove: undefined };
 
-  list.pop = function(){
-    return pop(list);
+  pubsub(self);
+  bind('concat', 'join', 'slice', 'toSource', 'toString',
+       'indexOf', 'lastIndexOf', 'forEach', 'every',
+       'some', 'filter', 'map', 'reduce', 'reduceRight');
+
+  self.len = function(){
+    return self.array.length;
   };
 
-  list.push = function(){
-    return push(list, arguments);
+  self.pop = function(){
+    return pop(self);
   };
 
-  list.reverse = function(){
-    return reverse(list);
+  self.push = function(){
+    return push(self, arguments);
   };
 
-  list.shift = function(){
-    return shift(list);
+  self.reverse = function(){
+    return reverse(self);
   };
 
-  list.sort = function(compare){
-    return sort(list, compare);
+  self.shift = function(){
+    return shift(self);
   };
 
-  list.splice = function(){
-    return splice(list, arguments);
+  self.sort = function(compare){
+    return sort(self, compare);
   };
 
-  list.unshift = function(){
-    return unshift(list, arguments);
+  self.splice = function(){
+    return splice(self, arguments);
   };
 
-  return list;
+  self.unshift = function(){
+    return unshift(self, arguments);
+  };
+
+  return self;
+
+  function bind(){
+    var i = arguments.length, m;
+
+    while( i -- ){
+      m = arguments[i];
+      self[m] = function(){
+        return self.array[m].apply(self.array, arguments);
+      };
+    }
+  }
+
+  function self(index){
+    return array[index];
+  };
+
 }
 
 function add(list, index, value){
   if( ! list.updates.add ) {
     list.updates.add = {};
-    list.updates.add_length = 0;
+    list.updates.add_len = 0;
   }
 
-  var i = list.updates.add_length;
+  var i = list.updates.add_len;
 
   while ( i -- ){
     if ( i < index ) break;
@@ -58,12 +80,12 @@ function add(list, index, value){
   }
 
   list.updates.add[index] = value;
-  list.updates.add_length++;
+  list.updates.add_len++;
 }
 
 function pop(list){
-  var ind = list.length - 1,
-      ret = proto.pop.call(list);
+  var ind = list.array.length - 1,
+      ret = proto.pop.call(list.array);
 
   if(ind == -1) return ret;
 
@@ -89,8 +111,8 @@ function publish(list){
 }
 
 function push(list, elements){
-  var relIndex = list.length,
-      ret      = proto.push.apply(list, elements);
+  var relIndex = list.array.length,
+      ret      = proto.push.apply(list.array, elements);
 
   var i = -1;
   while( ++i < elements.length ) {
@@ -103,7 +125,7 @@ function push(list, elements){
 }
 
 function reverse(list){
-  var ret = proto.reverse.call(list);
+  var ret = proto.reverse.call(list.array);
   list.publish({ reverse: true, sort: true });
   return ret;
 }
@@ -111,11 +133,11 @@ function reverse(list){
 function rm(list, index, updateIndex){
   if( ! list.updates.remove ) list.updates.remove = [];
 
-  var i, len = list.updates.add ? list.updates.add_length : 0;
+  var i, len = list.updates.add ? list.updates.add_len : 0;
 
   if (list.updates.add) {
     delete list.updates.add[index];
-    list.updates.add_length--;
+    list.updates.add_len--;
 
     i = index;
     while( ++i < len ) {
@@ -128,7 +150,7 @@ function rm(list, index, updateIndex){
 }
 
 function shift(list){
-  var ret = proto.shift.call(list);
+  var ret = proto.shift.call(list.array);
 
   rm(list, 0);
 
@@ -138,14 +160,14 @@ function shift(list){
 }
 
 function sort(list, compare){
-  var ret = proto.sort.call(list, compare);
+  var ret = proto.sort.call(list.array, compare);
   list.publish({ sort: true });
   return ret;
 }
 
 function splice(list, params){
-  var len = list.length,
-      ret = proto.splice.apply(list, params);
+  var len = list.array.length,
+      ret = proto.splice.apply(list.array, params);
 
   if(arguments.length == 0) return ret;
 
@@ -168,7 +190,7 @@ function splice(list, params){
 }
 
 function unshift(list, params){
-  var ret = proto.unshift.apply(list, params);
+  var ret = proto.unshift.apply(list.array, params);
 
   var i   = -1,
       len = params.length;

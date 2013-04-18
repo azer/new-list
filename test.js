@@ -1,10 +1,8 @@
 var List = require("./");
 
 it('creates a new empty list', function(){
-
   var l = List();
-  expect(l.length).to.equal(0);
-
+  expect(l.len()).to.equal(0);
 });
 
 
@@ -12,11 +10,11 @@ it('creates a new list with elements', function(){
 
   var l = List(3, 1, 4, 1, 5, 6);
 
-  expect(l.length).to.equal(6);
+  expect(l.len()).to.equal(6);
 
-  expect(l[0]).to.equal(3);
-  expect(l[3]).to.equal(1);
-  expect(l[5]).to.equal(6);
+  expect(l(0)).to.equal(3);
+  expect(l(3)).to.equal(1);
+  expect(l(5)).to.equal(6);
 
 });
 
@@ -27,7 +25,7 @@ it('pushes', function(done){
 
   l.subscribe(function(update){
     expect(update.add).to.deep.equal({ 1: 1, 2: 4, 3: 6 });
-    expect(update.add_length).to.equal(3);
+    expect(update.add_len).to.equal(3);
 
     done();
   });
@@ -101,7 +99,7 @@ it('splices', function(done){
     expect(l.slice()).to.deep.equal([3, 1, 9, 8, 7, 5, 6]);
     expect(update.remove).to.deep.equal([2, 3]);
     expect(update.add).to.deep.equal({ 2: 9, 3: 8, 4: 7 });
-    expect(update.add_length).to.equal(3);
+    expect(update.add_len).to.equal(3);
 
     done();
   });
@@ -115,7 +113,7 @@ it('inserts new elements by splicing', function(done){
 
   l.subscribe(function(update){
     expect(update.add).to.deep.equal({ 0: 17, 1: 19, 2: 7, 3: 11, 4: 13 });
-    expect(update.add_length).to.equal(5);
+    expect(update.add_len).to.equal(5);
 
     done();
   });
@@ -131,7 +129,7 @@ it('unshifts', function(done){
 
   l.subscribe(function(update){
     expect(update.add).to.deep.equal({ 0: 3, 1:1, 2: 4 });
-    expect(update.add_length).to.equal(3);
+    expect(update.add_len).to.equal(3);
     done();
   });
 
@@ -151,7 +149,7 @@ it('batches updates', function(done){
 
   l.subscribe(function(update){
     expect(update.add).to.deep.equal({ 0: 11, 1: 13, 2: 19, 3: 23, 4: 27 });
-    expect(update.add_length).to.equal(5);
+    expect(update.add_len).to.equal(5);
 
     done();
   });
@@ -171,7 +169,7 @@ it('batches more complicated updates', function(done){
 
   l.subscribe(function(update){
     expect(update.add).to.deep.equal({ 0: 'B', 1: 'C', 2: 27 });
-    expect(update.add_length).to.equal(3);
+    expect(update.add_len).to.equal(3);
 
     done();
   });
