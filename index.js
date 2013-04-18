@@ -10,9 +10,10 @@ function List(){
   self.updates = { add: undefined, remove: undefined };
 
   pubsub(self);
-  bind('concat', 'join', 'slice', 'toSource', 'toString',
-       'indexOf', 'lastIndexOf', 'forEach', 'every',
-       'some', 'filter', 'map', 'reduce', 'reduceRight');
+
+  bind('concat')('join')('slice')('toSource')('toString')
+      ('indexOf')('lastIndexOf')('forEach')('every')
+      ('some')('filter')('map')('reduce')('reduceRight');
 
   self.len = function(){
     return self.array.length;
@@ -48,15 +49,12 @@ function List(){
 
   return self;
 
-  function bind(){
-    var i = arguments.length, m;
+  function bind(m){
+    self[m] = function(){
+      return self.array[m].apply(self.array, arguments);
+    };
 
-    while( i -- ){
-      m = arguments[i];
-      self[m] = function(){
-        return self.array[m].apply(self.array, arguments);
-      };
-    }
+    return bind;
   }
 
   function self(index){

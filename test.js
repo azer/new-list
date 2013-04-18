@@ -194,3 +194,12 @@ it('is the example in README', function(done){
   });
 
 });
+
+it('binds iteration methods', function(){
+
+  List('Foo', 'Bar', 'Qux')
+    .forEach(function(el, ind, array){
+      expect(array[ind]).to.equal(el);
+    });
+
+});
