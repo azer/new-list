@@ -1,6 +1,6 @@
 ## new-list
 
-Creates native JavaScript arrays with [PubSub](http://github.com/azer/new-pubsub) interfaces that you can subscribe to
+Array-like objects with [PubSub](http://github.com/azer/new-pubsub) interfaces that you can subscribe to
 changes.
 
 ```js
@@ -11,6 +11,11 @@ todo.pop()
 todo.push('Cook Dinner')
 todo.splice(0, 1, 'Buy Milk And Bread')
 
+todo(0)
+// => 'Buy Milk and Break'
+todo(1)
+// => 'Take shower'
+
 todo.subscribe(function(update){ // or todo.subscribe.once
 
   update.add
@@ -18,6 +23,9 @@ todo.subscribe(function(update){ // or todo.subscribe.once
   
   update.remove
   // => [0, 1]
+  
+  update.sort
+  // => undefined
 
 })
 ```
@@ -26,37 +34,6 @@ todo.subscribe(function(update){ // or todo.subscribe.once
 
 ```bash
 $ npm install new-list
-```
-
-## Usage Example
-
-```js
-List = require('new-list')
-
-fruits = List('cherry', 'melon', 'orange', 'kiwi')
-// => ['cherry', 'melon', 'orange', 'kiwi']
-
-fruits.subscribe(function(update){
-
-    update.add
-    // => { 0: 'apple', 1: 'banana', 3: 'strawberry' }
-
-    update.remove
-    // => [3]
-    
-    update.sort
-    // => undefined
-    // This returns true if reverse() or sort() methods are called.
-
-})
-
-fruits.pop()
-fruits.push('strawberry')
-
-fruits
-// => ['cherry', 'melon', 'orange', 'strawberry']
-
-fruits.splice(0, 0, 'apple', 'banana')
 ```
 
 ## Firing Custom Updates
