@@ -1,7 +1,7 @@
 ## new-list
 
 Array-like objects with [PubSub](http://github.com/azer/new-pubsub) interfaces that you can subscribe to
-changes.
+changes. See also: [new-object](https://github.com/azer/new-object)
 
 ```js
 List = require('new-list')
