@@ -1,10 +1,9 @@
-var List = require("./");
+var List = require("../");
 
 it('creates a new empty list', function(){
   var l = List();
   expect(l.len()).to.equal(0);
 });
-
 
 it('creates a new list with elements', function(){
 
@@ -16,6 +15,17 @@ it('creates a new list with elements', function(){
   expect(l(3)).to.equal(1);
   expect(l(5)).to.equal(6);
 
+});
+
+it('sets values', function(done){
+  var l = List();
+  l(3, 10);
+  l(2, 9);
+
+  l.subscribe(function(update){
+
+    done();
+  });
 });
 
 it('pushes', function(done){

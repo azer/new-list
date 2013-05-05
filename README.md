@@ -15,6 +15,9 @@ todo(0)
 // => 'Buy Milk and Break'
 todo(1)
 // => 'Take shower'
+todo(1, 'Take a long shower')
+todo(1)
+// => 'Take a long shower'
 todo.len()
 // => 2
 
