@@ -1,4 +1,4 @@
-## new-list
+## new-list ![Build Status](https://travis-ci.org/azer/new-list.png)
 
 Array-like objects with [PubSub](http://github.com/azer/pubsub) interfaces that you can subscribe to
 changes. See also: [new-object](https://github.com/azer/new-object)
