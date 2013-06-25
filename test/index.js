@@ -3,6 +3,7 @@ var List = require("../");
 it('creates a new empty list', function(){
   var l = List();
   expect(l.len()).to.equal(0);
+  expect(l().length).to.equal(0);
 });
 
 it('creates a new list with elements', function(){

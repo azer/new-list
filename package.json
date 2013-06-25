@@ -13,7 +13,7 @@
     "pubsub"
   ],
   "dependencies": {
-    "new-pubsub": "*"
+    "pubsub": "*"
   },
   "devDependencies": {
     "fox": "*"

@@ -20,6 +20,8 @@ todo(1)
 // => 'Take a long shower'
 todo.len()
 // => 2
+todo()
+// => ['Buy Milk and Bread', 'Take a long shower']
 
 todo.subscribe(function(update){ // or todo.subscribe.once
 

@@ -1,4 +1,4 @@
-var pubsub  = require("new-pubsub"),
+var pubsub  = require("pubsub"),
     publish = require('./lib/publish'),
     proxy   = require('./lib/proxy'),
     set     = require('./lib/set');
@@ -60,11 +60,15 @@ function List(){
   }
 
   function self(index, value){
-    if(arguments.length > 1){
+    if ( arguments.length > 1 ){
       set(self, index, value);
     }
 
-    return array[index];
+    if ( arguments.length > 0 ) {
+      return array[index];
+    }
+
+    return array;
   };
 
 }
